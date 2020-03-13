@@ -1,13 +1,21 @@
-import pandas as pd 
-import numpy as np 
+#check df for nulls 
+import numpy as np
+import pandas as pd
 
+def check_nulls(df):
+    """
+    Function used to check for null values. 
+    """
+    na_df = df.isna().sum()
 
-def datesplit(df, date_column):
-    df = df.copy()
-    df[date_column] = pd.to_datetime(df[date_column], infer_datetime_format=True)
+    print('Null Values for Features\n')
+    print(na_df)
 
-    df[date_column+'_YEAR'] = df[date_column].dt.year
-    df[date_column+'_MONTH'] = df[date_column].dt.month
-    df[date_column+'_DAY'] = df[date_column].dt.day
-    return df
-
+def train_val_test(df):
+    """
+    Function that train/test/val splits a df
+    """
+    from sklearn.model_selection import train_test_split
+    train, test = train_test_split(df, test_size=0.2, random_state=42)
+    train, val = train_test_split(train, test_size=0.25, random_state=42)
+    return train.shape, test.shape, val.shape
