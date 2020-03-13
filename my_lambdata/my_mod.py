@@ -1,4 +1,12 @@
 def enlarge(n):
+    """
+    Multiplies a number by 100
+
+    Param: n (numeric) the number to enlarge
+
+    Return the enlarged number(numeric)
+    
+    """
     return n * 100
 
 
